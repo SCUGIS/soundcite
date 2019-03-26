@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soundcite</title>
+    <link rel="stylesheet" href="https://cloud.webtype.com/css/d4767ecb-457a-4677-8761-72f890add836.css"/>
+    <link rel="stylesheet" href="./css/orangeline.min.css"/>
+    <link rel="stylesheet" href="./static/css/style.css"/>
+    <!-- needed for authoring tool -->
+    <link rel="stylesheet" href="./css/player.css">
+    <script type="text/javascript" src="./js/soundcite.js"></script>
+</head>
+
+<body>
+<header class="header-product">
+  <h1 class="product-logo product-logo-large">Soundcite <span>JS</span></h1>
+  <h2 class="product-tagline">在文字中鑲一段聲音</h2>
+    <nav id="navbar-secondary" class="navbar navbar-subnav column-hide-phone">
+        <ul>
+            <li class="logo">
+                <h2 class="product-logo product-logo-smallest">Soundcite <span>JS</span></h2>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<article id="product-body">
+        <section id="demo" class="container-fluid">
+            <div class="product-demo">
+                <div class="grid">
+                    <div class="column-8">
+                        <blockquote class="blockquote--large">
+                            <p class="text-color-grey--lighter">
+                                Tens of thousands of Egyptians packed into Tahrir Square in central Cairo on Friday ... <span class="text-color-text-default"><span data-end="81701" data-start="72436" data-url="https://soundcite.knightlab.com/media/hearingvoices_voices-from-tahrir.mp3" class="soundcite soundcite-loaded soundcite-play">The crowd was as large</span></span> as any that has gathered in the square since the protests that forced out President Hosni Mubarak in February 2011.
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="section-color section-color-complement" id="make">
+    <div class="container">
+        <ol class="instructional-steps">
+            <li id="make-set-url" class="step grid">
+                <div class="step-number column-2">
+                  <h6>將 URL 貼到</br>下方欄位</h6>
+                </div>
+                <div class="step-details column-10">
+                    <p>1.1 請使用 MP3, M4A, WAV 或 OGG 的音訊格式</p>
+                    <p>1.2 學校的學生都會有一個網頁空間，可將檔案上傳到該目錄</p>
+                    <p>1.3 如果你在執行學校計畫，可以請老師與 GIS 中心聯絡，協助上傳至中心的空間</p>
+                    <form>
+                        <div class="grid grid-no-gutters">
+                            <div class="input-group-label column-10">
+                                <label class="input-group-addon" for="url">音訊 URL</label>
+                                <input type="text" id="url">
+                            </div>
+                            <div class="column-2">
+                                <a class="button button-complement" id="load_url">載入</a>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="note" id="audio-clip-examples">
+                    如果是利用 GIS 中心的伺服器，請提供英文檔名，路徑會是 ./media/xxx.mp3
+                    </br>
+                    如果你想要試試效果，可以利用這個檔 <a class="example-url" href="javascript:void(0);">./media/bach_guitar.mp3</a>
+                    </p>
+                </div>
+            </li>
+            <li id="make-clip-options" class="step grid">
+                <div class="step-number column-2">
+                  <h6>選擇要播放</br>的部份</h6>
+                </div>
+                <div class="step-details column-10">
+                    <div class="grid">
+                        <div class="grid-item">
+                          <p>2.1 如果你要全播，可以省略這步</p>
+                          <p>2.2 如果你只想播放其中一個片段，利用下面的編輯器來選擇開始及結束點，加上播放次數及文本內容</p>
+
+                          <section id="creation_box" >
+                            <div id="audio_container">
+                                <div id="audio_name"></div>
+                                <audio id="audio_player" src="" controls>
+                                </audio>
+                            </div>
+                            <div id="player_container">
+                              <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src=""></iframe>
+                            </div>
+                              <form id="times" class="">
+                                  <div class="grid">
+                                      <div class="grid-item">
+                                          <div class="input-group">
+                                              <label class="input-group-addon" for="start_field">開始時間</label>
+                                              <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="" tabindex="1">
+                                          </div>
+                                          <a class="button button-link" id="start_btn">設定為當前播放時間</a>
+                                      </div>
+                                      <div class="grid-item">
+                                          <div class="input-group">
+                                              <label class="input-group-addon" for="end_field">結束時間</label>
+                                              <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="" tabindex="2">
+                                          </div>
+                                          <a class="button button-link" id="end_btn">設定為當前播放時間</a>
+                                      </div>
+                                      <div class="column-2">
+                                          <div class="input-group">
+                                              <label class="input-group-addon" for="end_field">播放次數</label>
+                                              <input type="text" id="plays_field" class="input-small end" placeholder="1" value="1" min="0" tabindex="3">
+                                          </div>
+                                      </div>
+                                      <div class="grid-item">
+                                          <label class="input-group-addon" for="linktext">連結文本</label>
+                                          <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="播放"  tabindex="4">
+                                      </div>
+                                      <div class="grid-item grid-item-center">
+                                          <button type="button" id="create_clip" class="button button-full-width button-complement" tabindex="5">生成</button>
+                                      </div>
+                                  </div>
+                              </form>
+                            <h3>已生成的片段</h3>
+                            <em id="audition_area_status">無</em>
+                            <div id="audition_area">
+                            </div>
+                          </section>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="step grid">
+                <div class="step-number column-2">
+                    <h6>嵌入程式碼</h6>
+                </div>
+                <div class="step-details column-10">
+                  <div class="grid">
+                      <div class="grid-item">
+                        <p>
+                          3.1 將這段程式碼放到網頁程式的最上方
+                          <textarea id="header" readonly="readonly" class="code">
+                          </textarea>
+                        </p>
+                          3.2 將在第二步驟生成的嵌入碼，放到你所對應的文字段落
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+
+</article>
+
+
+
+
+
+
+    <footer class="footer-knightlab--dark">
+    <div class="container">
+        <div class="grid grid-center">
+            <div class="grid-item">
+            <span class="copyright">© Copyright <script type="text/javascript"> document.write(new Date().getFullYear());</script> Knight Lab @ NWU &amp; GIS Center @ SCU</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script id="soundcloud-clip-base-template" type="text/template">
+<span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>" data-plays="<%= plays %>"><%= text %></span>
+</script>
+<script id="file-clip-base-template" type="text/template">
+<span class="soundcite" data-url="<%= url %>" data-start="<%= start %>" data-end="<%= end %>" data-plays="<%= plays %>"><%= text %></span>
+</script>
+<script id="clip-preview-template" type="text/template">
+<div class="clip">
+  <a type='button' class='button button-link pull-right delete-clip'>刪除</a>
+  <p>這個就是你「生成」的片段，會把 <%= clip_html %> 鑲在文字中</p>
+  <h6>嵌入碼</h6>
+  <textarea readonly="readonly" class="code"><%= clip_html %></textarea>
+</div>
+</script>
+
+<script id="create-error-template" type="text/template">
+<div id="create-error" class="alert alert-error clear">
+  <a data-dismiss="alert" class="close button button-primary button-smallest" type="button">&times;</a>
+  <strong>出錯了!</strong> 請修改錯誤的部分並重新送出一次
+</div>
+</script>
+
+<script id="embed-code-template" type="text/template">
+  <link href='http://oxy.casehsu.org/soundcite/css/player.css' rel='stylesheet' type='text/css'><% print('<script'); %> type='text/javascript' src='http://oxy.casehsu.org/soundcite/js/soundcite.js'><% print('</' + 'script>'); %>
+</script>
+<script src="./js/main.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="./static/js/main.js"></script>
+
+</body>
+</html>
